@@ -37,6 +37,7 @@ const Page = () => {
             label="Title"
             onChange={handleChange}
             value={item.title}
+            name="title"
             sx={style}
           />
           <br />
@@ -44,6 +45,7 @@ const Page = () => {
             label="Body"
             onChange={handleChange}
             value={item.body}
+            name="body"
             sx={style}
           />
           <br />
