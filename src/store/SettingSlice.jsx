@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "@/lib/axios";
+import { FireToast } from "@/lib/fireToast";
 
 export const fetchSetting = createAsyncThunk(
   "Settings/fetchSetting",
