@@ -171,7 +171,7 @@ const EditRecommendation = (props) => {
           sx={style}
           options={status}
           getOptionLabel={(option) => option?.label}
-          onChange={(e, val) => setItem({ ...item, trade_result: val?.value })}
+          onChange={(e, val) => setItem({ ...item, status: val?.value })}
           filterSelectedOptions
           renderInput={(params) => <TextField {...params} label="Status" />}
           style={{ width: "24%" }}
