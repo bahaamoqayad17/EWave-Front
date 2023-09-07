@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "@/lib/axios";
 import { FireToast } from "@/lib/fireToast";
 import { closeModal } from "./RootSlice";
+import Router from "next/router";
 
 export const fetchPaid = createAsyncThunk(
   "recommendations/fetchPaid",
@@ -46,6 +47,23 @@ export const deleteRecommendation = createAsyncThunk(
   }
 );
 
+export const deleteAll = createAsyncThunk(
+  "recommendations/deleteAll",
+  async (item, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await axios.post(`/recommendations/deleteAll`, item);
+      if (Router.pathname == "/admin/recommendations/paid") {
+        dispatch(fetchPaid());
+      } else {
+        dispatch(fetchUnPaid());
+      }
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const addRecommendation = createAsyncThunk(
   "recommendations/addRecommendation",
   async ({ formData, is_paid }, { dispatch, rejectWithValue }) => {
@@ -70,7 +88,7 @@ export const updateRecommendation = createAsyncThunk(
   "recommendations/updateRecommendation",
   async (item, { dispatch, rejectWithValue }) => {
     try {
-      const response = await axios.put(`/recommendations/${item._id}`, item);
+      const response = await axios.put(`/recommendations/${item.id}`, item);
       if (item.is_paid == 1) {
         dispatch(fetchPaid());
       } else {
@@ -119,6 +137,9 @@ const Recommendationslice = createSlice({
     });
     builder.addCase(deleteRecommendation.fulfilled, (state, action) => {
       FireToast("warning", "Recommedation Deleted Successfully");
+    });
+    builder.addCase(deleteAll.fulfilled, (state, action) => {
+      FireToast("warning", "Recommedations Deleted Successfully");
     });
   },
 });

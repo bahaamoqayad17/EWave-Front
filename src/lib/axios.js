@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 const instance = axios.create({
-  baseURL: "https://ewave-i4ql.onrender.com/api/v1/",
+  baseURL: "http://localhost:4040/api/v1/",
   "Content-Type": "multipart/form-data",
 });
 

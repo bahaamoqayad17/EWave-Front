@@ -46,7 +46,7 @@ export default function ConfirmDialog({ model, item }) {
       >
         <DialogTitle>
           <center>
-            <img src="./warning.png" width={200} alt="test" />
+            <img src="/warning.png" width={200} alt="test" />
           </center>
         </DialogTitle>
         <DialogContent>

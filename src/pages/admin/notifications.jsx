@@ -38,14 +38,16 @@ const Page = () => {
             onChange={handleChange}
             value={item.title}
             name="title"
+            fullWidth
             sx={style}
           />
           <br />
           <TextField
-            label="Body"
+            label="Message"
             onChange={handleChange}
             value={item.body}
             name="body"
+            fullWidth
             sx={style}
           />
           <br />

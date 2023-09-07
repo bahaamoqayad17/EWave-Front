@@ -27,7 +27,7 @@ export const updateSetting = createAsyncThunk(
 );
 
 export const pushNotification = createAsyncThunk(
-  "Settings/updateSetting",
+  "Settings/notifications",
   async (item, { rejectWithValue }) => {
     try {
       const response = await axios.post("/settings/pushNotification", item);
@@ -74,6 +74,9 @@ const SettingSlice = createSlice({
 
     builder.addCase(updateSetting.fulfilled, (state, action) => {
       FireToast("success", "Settings Updated Successfully");
+    });
+    builder.addCase(pushNotification.fulfilled, (state, action) => {
+      FireToast("success", "Notification Send Successfully");
     });
   },
 });

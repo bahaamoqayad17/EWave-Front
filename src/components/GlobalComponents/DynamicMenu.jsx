@@ -30,14 +30,6 @@ export default function DynamicMenu({ item, model }) {
     setOpenModal(true);
   };
 
-  const handleDelete = () => {
-    if (window.confirm(t("delete_this"))) {
-      // removeOne(item);
-    } else {
-      return;
-    }
-  };
-
   return (
     <>
       <DynamicModal
@@ -82,14 +74,18 @@ export default function DynamicMenu({ item, model }) {
             </p>
           </Link>
         </MenuItem> */}
-        <MenuItem>
-          <ConfirmDialog
-            model={model}
-            item={item}
-            setOpen={setOpenMenu}
-            open={openMenu}
-          />
-        </MenuItem>
+        {model === "users" ? (
+          ""
+        ) : (
+          <MenuItem>
+            <ConfirmDialog
+              model={model}
+              item={item}
+              setOpen={setOpenMenu}
+              open={openMenu}
+            />
+          </MenuItem>
+        )}
       </Menu>
     </>
   );

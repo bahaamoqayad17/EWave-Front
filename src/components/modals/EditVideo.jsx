@@ -50,7 +50,7 @@ const EditVideo = (props) => {
         onChange={handleChange}
         style={style}
       />
-
+      {/* 
       <TextField
         label="Description"
         variant="outlined"
@@ -61,7 +61,7 @@ const EditVideo = (props) => {
         value={item?.description}
         onChange={handleChange}
         style={style}
-      />
+      /> */}
 
       <FormControl variant="outlined" fullWidth style={style}>
         <InputLabel htmlFor="outlined-age-native-simple">
@@ -75,6 +75,7 @@ const EditVideo = (props) => {
         >
           <option value="Free">Free</option>
           <option value="Paid">Paid</option>
+          <option value="All">All</option>
         </Select>
       </FormControl>
 

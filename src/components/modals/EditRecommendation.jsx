@@ -1,6 +1,10 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "@/store/CategorySlice";
@@ -10,6 +14,7 @@ import {
   addRecommendation,
   updateRecommendation,
 } from "@/store/RecommendationSlice";
+import { MenuItem } from "@mui/material";
 
 const style = {
   marginBottom: "20px",
@@ -73,6 +78,10 @@ const paid = [
     label: "Paid",
     value: 1,
   },
+  {
+    label: "All",
+    value: 2,
+  },
 ];
 
 const action = [
@@ -91,6 +100,8 @@ const EditRecommendation = (props) => {
   const [image, setImage] = useState(item?.image);
   const dispatch = useDispatch();
   const { categories } = useSelector(({ categories }) => categories);
+  const [expire, setExpire] = useState("Days");
+  const [expireNum, setExpireNum] = useState("");
 
   const handleChange = (e) => {
     if (e.target.name === "image") {
@@ -105,7 +116,7 @@ const EditRecommendation = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
-
+    formData.append("expire_time", expireNum + " " + expire);
     for (const key in item) {
       formData.append(key, item[key]);
     }
@@ -128,7 +139,7 @@ const EditRecommendation = (props) => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-around",
+          justifyContent: "space-between",
           alignItems: "center",
         }}
       >
@@ -139,39 +150,9 @@ const EditRecommendation = (props) => {
           value={item?.name}
           onChange={handleChange}
           style={style}
-          sx={{ width: "30%" }}
+          sx={{ width: "24%" }}
         />
 
-        <TextField
-          label="Rist Per Trade"
-          variant="outlined"
-          name="risk_per_trade"
-          type="number"
-          value={item?.risk_per_trade}
-          onChange={handleChange}
-          style={style}
-          sx={{ width: "20%" }}
-        />
-
-        <Autocomplete
-          id="tags-outlined"
-          sx={style}
-          options={status}
-          getOptionLabel={(option) => option?.label}
-          onChange={(e, val) => setItem({ ...item, status: val?.value })}
-          filterSelectedOptions
-          defaultValue={item?._id ? status[item?.status].label : null}
-          renderInput={(params) => <TextField {...params} label="Status" />}
-          style={{ width: "20%" }}
-        />
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-        }}
-      >
         <Autocomplete
           id="tags-outlined"
           sx={style}
@@ -180,9 +161,51 @@ const EditRecommendation = (props) => {
           onChange={(e, val) => setItem({ ...item, trade_style: val.value })}
           filterSelectedOptions
           renderInput={(params) => (
-            <TextField {...params} label="Trade Style" />
+            <TextField {...params} label="Trading Style" />
           )}
           style={{ width: "25%" }}
+        />
+
+        <Autocomplete
+          id="tags-outlined"
+          sx={style}
+          options={status}
+          getOptionLabel={(option) => option?.label}
+          onChange={(e, val) => setItem({ ...item, trade_result: val?.value })}
+          filterSelectedOptions
+          renderInput={(params) => <TextField {...params} label="Status" />}
+          style={{ width: "24%" }}
+        />
+
+        <Autocomplete
+          id="tags-outlined"
+          sx={style}
+          options={action}
+          getOptionLabel={(option) => option?.label}
+          onChange={(e, val) => setItem({ ...item, action: val?.value })}
+          filterSelectedOptions
+          renderInput={(params) => <TextField {...params} label="Action" />}
+          style={{ width: "24%" }}
+        />
+      </Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-around",
+          alignItems: "center",
+        }}
+      >
+        <TextField
+          label="Open Price"
+          variant="outlined"
+          name="open_price"
+          fullWidth
+          type="number"
+          value={item?.open_price}
+          onChange={handleChange}
+          style={style}
+          sx={{ width: "24%" }}
         />
 
         <TextField
@@ -218,7 +241,7 @@ const EditRecommendation = (props) => {
           value={item?.stop_loss}
           onChange={handleChange}
           style={style}
-          sx={{ width: "20%" }}
+          sx={{ width: "24%" }}
         />
       </Box>
 
@@ -229,6 +252,16 @@ const EditRecommendation = (props) => {
           alignItems: "center",
         }}
       >
+        <TextField
+          label="Rist Per Trade"
+          variant="outlined"
+          name="risk_per_trade"
+          type="number"
+          value={item?.risk_per_trade}
+          onChange={handleChange}
+          style={style}
+          sx={{ width: "24%" }}
+        />
         <Autocomplete
           id="tags-outlined"
           sx={style}
@@ -242,26 +275,16 @@ const EditRecommendation = (props) => {
           style={{ width: "24%" }}
         />
 
-        <Autocomplete
-          id="tags-outlined"
-          sx={style}
-          options={categories}
-          getOptionLabel={(option) => option?.name}
-          onChange={(e, val) => setItem({ ...item, category: val?._id })}
-          filterSelectedOptions
-          renderInput={(params) => <TextField {...params} label="Markets" />}
-          style={{ width: "24%" }}
-        />
-
-        <Autocomplete
-          id="tags-outlined"
-          sx={style}
-          options={action}
-          getOptionLabel={(option) => option?.label}
-          onChange={(e, val) => setItem({ ...item, action: val?.value })}
-          filterSelectedOptions
-          renderInput={(params) => <TextField {...params} label="Action" />}
-          style={{ width: "24%" }}
+        <TextField
+          label="Win Rate"
+          variant="outlined"
+          name="win_rate"
+          fullWidth
+          type="number"
+          value={item?.win_rate}
+          onChange={handleChange}
+          style={style}
+          sx={{ width: "24%" }}
         />
 
         <Autocomplete
@@ -278,42 +301,41 @@ const EditRecommendation = (props) => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-around",
+          justifyContent: "space-between",
           alignItems: "center",
         }}
       >
         <TextField
-          label="Expire Time"
+          label="Expired Time"
           variant="outlined"
           name="expire_time"
-          value={item?.expire_time}
-          onChange={handleChange}
+          value={expireNum}
+          onChange={(e) => setExpireNum(e.target.value)}
           style={style}
-          sx={{ width: "24%" }}
         />
+        <FormControl variant="outlined" sx={{ width: "24%" }} style={style}>
+          <InputLabel htmlFor="input-group">Days Or Hours</InputLabel>
 
-        <TextField
-          label="Win Rate"
-          variant="outlined"
-          name="win_rate"
-          fullWidth
-          type="number"
-          value={item?.win_rate}
-          onChange={handleChange}
-          style={style}
-          sx={{ width: "24%" }}
-        />
+          <Select
+            label="Select"
+            value={expire}
+            onChange={(e) => setExpire(e.target.value)}
+            fullWidth
+          >
+            <MenuItem value="Days">Days</MenuItem>
+            <MenuItem value="Hours">Hours</MenuItem>
+          </Select>
+        </FormControl>
 
-        <TextField
-          label="Open Price"
-          variant="outlined"
-          name="open_price"
-          fullWidth
-          type="number"
-          value={item?.open_price}
-          onChange={handleChange}
-          style={style}
-          sx={{ width: "24%" }}
+        <Autocomplete
+          id="tags-outlined"
+          sx={style}
+          options={categories}
+          getOptionLabel={(option) => option?.name}
+          onChange={(e, val) => setItem({ ...item, category: val?._id })}
+          filterSelectedOptions
+          renderInput={(params) => <TextField {...params} label="Markets" />}
+          style={{ width: "24%" }}
         />
       </Box>
 
@@ -321,7 +343,7 @@ const EditRecommendation = (props) => {
         <Box>
           <p>Last Update</p>
           <input
-            type="date"
+            type="datetime-local"
             name="last_update"
             onChange={handleChange}
             value={item?.last_update}
@@ -332,7 +354,7 @@ const EditRecommendation = (props) => {
         <Box>
           <p>Opening Time</p>
           <input
-            type="date"
+            type="datetime-local"
             name="opening_time"
             onChange={handleChange}
             value={item?.opening_time}

@@ -16,8 +16,8 @@ export const resources = {
   },
   payments: {},
   users: {
-    headers: ["name", "email", "phone", "Is Paid"],
-    fields: ["name", "email", "mobile_number", "is_paid"],
+    headers: ["email", "phone", "Is Paid"],
+    fields: ["email", "mobile_number", "is_paid"],
   },
   videos: {
     headers: ["link", "title"],

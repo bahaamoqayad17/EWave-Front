@@ -16,6 +16,19 @@ export const fetchUsers = createAsyncThunk(
   }
 );
 
+export const updateUser = createAsyncThunk(
+  "users/updateUser",
+  async (item, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await axios.put(`/users/${item._id}`, item);
+      dispatch(closeModal(true));
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const initialState = {
   users: [],
   loading: false,
@@ -36,6 +49,9 @@ const UserSlice = createSlice({
       state.users = action.payload.data;
       state.count = action.payload.count;
       state.loading = false;
+    });
+    builder.addCase(updateUser.fulfilled, (state, action) => {
+      FireToast("success", "User updated successfully");
     });
   },
 });

@@ -6,6 +6,7 @@ import EditArticle from "../modals/EditArticle";
 import EditCategory from "../modals/EditCategory";
 import EditVideo from "../modals/EditVideo";
 import EditRecommendation from "../modals/EditRecommendation";
+import EditUser from "../modals/EditUser";
 
 const style = {
   position: "absolute",
@@ -33,6 +34,7 @@ export default function DynamicModal(props) {
     categories: EditCategory,
     videos: EditVideo,
     recommendations: EditRecommendation,
+    users: EditUser,
   };
 
   const DynamicComponentName = componentsName[props.model];
