@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "@/store/CategorySlice";
@@ -20,88 +19,15 @@ const style = {
   marginBottom: "20px",
 };
 
-const status = [
-  {
-    label: "Pending",
-    value: 0,
-  },
-  {
-    label: "Active",
-    value: 1,
-  },
-  {
-    label: "Expired",
-    value: 2,
-  },
-];
-
-const trade_result = [
-  {
-    label: "Waiting",
-    value: 0,
-  },
-  {
-    label: "Break even",
-    value: 1,
-  },
-  {
-    label: "Target 1",
-    value: 2,
-  },
-  {
-    label: "Target 2",
-    value: 3,
-  },
-  {
-    label: "Stop loss",
-    value: 4,
-  },
-];
-
-const trade_style = [
-  {
-    label: "Swing Trade",
-    value: 0,
-  },
-  {
-    label: "Interday",
-    value: 1,
-  },
-];
-
-const paid = [
-  {
-    label: "Free",
-    value: 0,
-  },
-  {
-    label: "Paid",
-    value: 1,
-  },
-  {
-    label: "All",
-    value: 2,
-  },
-];
-
-const action = [
-  {
-    label: "Buy",
-    value: "Buy",
-  },
-  {
-    label: "Sell",
-    value: "Sell",
-  },
-];
-
 const EditRecommendation = (props) => {
   const [item, setItem] = useState(props.item);
   const [image, setImage] = useState(item?.image);
   const dispatch = useDispatch();
   const { categories } = useSelector(({ categories }) => categories);
   const [expire, setExpire] = useState("Days");
-  const [expireNum, setExpireNum] = useState("");
+  const [expireNum, setExpireNum] = useState(
+    props.item?.expire_time.split(" ")[0]
+  );
 
   const handleChange = (e) => {
     if (e.target.name === "image") {
@@ -153,40 +79,51 @@ const EditRecommendation = (props) => {
           sx={{ width: "24%" }}
         />
 
-        <Autocomplete
-          id="tags-outlined"
-          sx={style}
-          options={trade_style}
-          getOptionLabel={(option) => option?.label}
-          onChange={(e, val) => setItem({ ...item, trade_style: val.value })}
-          filterSelectedOptions
-          renderInput={(params) => (
-            <TextField {...params} label="Trading Style" />
-          )}
-          style={{ width: "25%" }}
-        />
+        <FormControl variant="outlined" sx={{ width: "24%" }} style={style}>
+          <InputLabel htmlFor="input-group">Trade Style</InputLabel>
 
-        <Autocomplete
-          id="tags-outlined"
-          sx={style}
-          options={status}
-          getOptionLabel={(option) => option?.label}
-          onChange={(e, val) => setItem({ ...item, status: val?.value })}
-          filterSelectedOptions
-          renderInput={(params) => <TextField {...params} label="Status" />}
-          style={{ width: "24%" }}
-        />
+          <Select
+            label="Select"
+            value={item?.trade_style}
+            onChange={handleChange}
+            name="trade_style"
+            fullWidth
+          >
+            <MenuItem value="0">Swing Trade</MenuItem>
+            <MenuItem value="1">Interday</MenuItem>
+          </Select>
+        </FormControl>
 
-        <Autocomplete
-          id="tags-outlined"
-          sx={style}
-          options={action}
-          getOptionLabel={(option) => option?.label}
-          onChange={(e, val) => setItem({ ...item, action: val?.value })}
-          filterSelectedOptions
-          renderInput={(params) => <TextField {...params} label="Action" />}
-          style={{ width: "24%" }}
-        />
+        <FormControl variant="outlined" sx={{ width: "24%" }} style={style}>
+          <InputLabel htmlFor="input-group">Status</InputLabel>
+
+          <Select
+            label="Select"
+            value={item?.status}
+            onChange={handleChange}
+            name="status"
+            fullWidth
+          >
+            <MenuItem value="0">Pending</MenuItem>
+            <MenuItem value="1">Active</MenuItem>
+            <MenuItem value="2">Expired</MenuItem>
+          </Select>
+        </FormControl>
+
+        <FormControl variant="outlined" sx={{ width: "24%" }} style={style}>
+          <InputLabel htmlFor="input-group">Action</InputLabel>
+
+          <Select
+            label="Select"
+            value={item?.action}
+            onChange={handleChange}
+            name="action"
+            fullWidth
+          >
+            <MenuItem value="Buy">Buy</MenuItem>
+            <MenuItem value="Sell">Sell</MenuItem>
+          </Select>
+        </FormControl>
       </Box>
 
       <Box
@@ -262,18 +199,24 @@ const EditRecommendation = (props) => {
           style={style}
           sx={{ width: "24%" }}
         />
-        <Autocomplete
-          id="tags-outlined"
-          sx={style}
-          options={trade_result}
-          getOptionLabel={(option) => option?.label}
-          onChange={(e, val) => setItem({ ...item, trade_result: val?.value })}
-          filterSelectedOptions
-          renderInput={(params) => (
-            <TextField {...params} label="Trade Result" />
-          )}
-          style={{ width: "24%" }}
-        />
+
+        <FormControl variant="outlined" sx={{ width: "24%" }} style={style}>
+          <InputLabel htmlFor="input-group">Trade Result</InputLabel>
+
+          <Select
+            label="Select"
+            value={item?.trade_result}
+            onChange={handleChange}
+            name="trade_result"
+            fullWidth
+          >
+            <MenuItem value="0">Waiting</MenuItem>
+            <MenuItem value="1">Break even</MenuItem>
+            <MenuItem value="2">Target 1</MenuItem>
+            <MenuItem value="3">Target 2</MenuItem>
+            <MenuItem value="4">Stop loss</MenuItem>
+          </Select>
+        </FormControl>
 
         <TextField
           label="Win Rate"
@@ -287,16 +230,21 @@ const EditRecommendation = (props) => {
           sx={{ width: "24%" }}
         />
 
-        <Autocomplete
-          id="tags-outlined"
-          sx={style}
-          options={paid}
-          getOptionLabel={(option) => option?.label}
-          onChange={(e, val) => setItem({ ...item, is_paid: val?.value })}
-          filterSelectedOptions
-          renderInput={(params) => <TextField {...params} label="Paid" />}
-          style={{ width: "24%" }}
-        />
+        <FormControl variant="outlined" sx={{ width: "24%" }} style={style}>
+          <InputLabel htmlFor="input-group">Paid Or Free</InputLabel>
+
+          <Select
+            label="Select"
+            value={item?.is_paid}
+            onChange={handleChange}
+            name="is_paid"
+            fullWidth
+          >
+            <MenuItem value="0">Free</MenuItem>
+            <MenuItem value="1">Paid</MenuItem>
+            <MenuItem value="2">All</MenuItem>
+          </Select>
+        </FormControl>
       </Box>
       <Box
         sx={{
@@ -327,20 +275,27 @@ const EditRecommendation = (props) => {
           </Select>
         </FormControl>
 
-        <Autocomplete
-          id="tags-outlined"
-          sx={style}
-          options={categories}
-          getOptionLabel={(option) => option?.name}
-          onChange={(e, val) => setItem({ ...item, category: val?._id })}
-          filterSelectedOptions
-          renderInput={(params) => <TextField {...params} label="Markets" />}
-          style={{ width: "24%" }}
-        />
+        <FormControl variant="outlined" sx={{ width: "24%" }} style={style}>
+          <InputLabel htmlFor="input-group">Market</InputLabel>
+
+          <Select
+            label="Select"
+            value={item?.category}
+            onChange={handleChange}
+            name="category"
+            fullWidth
+          >
+            {categories.map((item) => (
+              <MenuItem key={item} value={item._id}>
+                {item.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </Box>
 
       <Box display={"flex"}>
-        <Box>
+        <Box mb={5}>
           <p>Last Update</p>
           <input
             type="datetime-local"
@@ -349,6 +304,7 @@ const EditRecommendation = (props) => {
             value={item?.last_update}
             style={{ padding: "15px", marginBottom: "20px" }}
           />
+          <p>{new Date(item?.last_update).toLocaleString()}</p>
         </Box>
         &nbsp;&nbsp;
         <Box>
@@ -360,6 +316,7 @@ const EditRecommendation = (props) => {
             value={item?.opening_time}
             style={{ padding: "15px", marginBottom: "20px" }}
           />
+          <p>{new Date(item?.opening_time).toLocaleString()}</p>
         </Box>
       </Box>
 
