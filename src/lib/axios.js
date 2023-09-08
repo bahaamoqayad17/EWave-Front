@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 const instance = axios.create({
-  baseURL: "http://localhost:4040/api/v1/",
+  baseURL: process.env.API_URL,
   "Content-Type": "multipart/form-data",
 });
 
