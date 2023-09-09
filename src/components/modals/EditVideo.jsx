@@ -28,6 +28,7 @@ const EditVideo = (props) => {
       dispatch(addVideo(item));
     }
   };
+  console.log(item);
   return (
     <>
       <h1 style={style}>Video</h1>
@@ -50,18 +51,21 @@ const EditVideo = (props) => {
         onChange={handleChange}
         style={style}
       />
-      {/* 
-      <TextField
-        label="Description"
-        variant="outlined"
-        name="description"
-        fullWidth
-        multiline
-        rows={5}
-        value={item?.description}
-        onChange={handleChange}
-        style={style}
-      /> */}
+
+      <FormControl variant="outlined" fullWidth style={style}>
+        <InputLabel htmlFor="outlined-age-native-simple">
+          Pinned Or Not
+        </InputLabel>
+        <Select
+          native
+          name="pinned"
+          value={item?.pinned}
+          onChange={handleChange}
+        >
+          <option value={0}>Not Pinned</option>
+          <option value={1}>Pinned</option>
+        </Select>
+      </FormControl>
 
       <FormControl variant="outlined" fullWidth style={style}>
         <InputLabel htmlFor="outlined-age-native-simple">
