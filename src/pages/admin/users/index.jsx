@@ -34,7 +34,7 @@ const Page = () => {
     const value = e.target.value;
     if (e.key === "Enter") {
       if (value) {
-        dispatch(fetchUsers({ name: value }));
+        dispatch(fetchUsers({ email: value }));
       } else {
         dispatch(fetchUsers());
       }

@@ -47,9 +47,9 @@ export const addVideo = createAsyncThunk(
 
 export const updateVideo = createAsyncThunk(
   "Videos/updateVideo",
-  async (item, { dispatch, rejectWithValue }) => {
+  async ({ item, id }, { dispatch, rejectWithValue }) => {
     try {
-      const response = await axios.put(`/videos/${item._id}`, item);
+      const response = await axios.put(`/videos/${id}`, item);
       dispatch(fetchVideos());
       dispatch(closeModal(true));
 

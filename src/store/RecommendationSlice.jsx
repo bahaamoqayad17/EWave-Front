@@ -86,9 +86,9 @@ export const addRecommendation = createAsyncThunk(
 
 export const updateRecommendation = createAsyncThunk(
   "recommendations/updateRecommendation",
-  async (item, { dispatch, rejectWithValue }) => {
+  async ({ item, id }, { dispatch, rejectWithValue }) => {
     try {
-      const response = await axios.put(`/recommendations/${item.id}`, item);
+      const response = await axios.put(`/recommendations/${id}`, item);
       if (item.is_paid == 1) {
         dispatch(fetchPaid());
       } else {

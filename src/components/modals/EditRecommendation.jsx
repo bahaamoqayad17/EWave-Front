@@ -43,9 +43,20 @@ const EditRecommendation = (props) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("expire_time", expireNum + " " + expire);
-    for (const key in item) {
-      formData.append(key, item[key]);
-    }
+    formData.append("image", item?.image);
+    formData.append("name", item?.name);
+    formData.append("trade_style", item?.trade_style);
+    formData.append("status", item?.status);
+    formData.append("action", item?.action);
+    formData.append("open_price", item?.open_price);
+    formData.append("first_target_price", item?.first_target_price);
+    formData.append("second_target_price", item?.second_target_price);
+    formData.append("stop_loss", item?.stop_loss);
+    formData.append("risk_per_trade", item?.risk_per_trade);
+    formData.append("trade_result", item?.trade_result);
+    formData.append("win_rate", item?.win_rate);
+    formData.append("category", item?.category);
+    formData.append("comment", item?.comment);
 
     if (item._id) {
       formData.append("_id", item._id);
@@ -58,6 +69,7 @@ const EditRecommendation = (props) => {
   useEffect(() => {
     dispatch(fetchCategories());
   }, []);
+
   return (
     <>
       <h1 style={style}>Recommendation</h1>
