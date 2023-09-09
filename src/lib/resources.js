@@ -20,8 +20,8 @@ export const resources = {
     fields: ["email", "mobile_number", "is_paid"],
   },
   videos: {
-    headers: ["link", "title"],
-    fields: ["url", "title"],
+    headers: ["link", "image", "title"],
+    fields: ["url", "image", "title"],
     remove: deleteVideo,
   },
   categories: {
