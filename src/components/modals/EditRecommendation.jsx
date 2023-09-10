@@ -24,7 +24,7 @@ const EditRecommendation = (props) => {
   const [image, setImage] = useState(item?.image);
   const dispatch = useDispatch();
   const { categories } = useSelector(({ categories }) => categories);
-  const [expire, setExpire] = useState("Days");
+  const [expire, setExpire] = useState(props.item?.expire_time.split(" ")[1]);
   const [expireNum, setExpireNum] = useState(
     props.item?.expire_time.split(" ")[0]
   );
@@ -57,6 +57,9 @@ const EditRecommendation = (props) => {
     formData.append("win_rate", item?.win_rate);
     formData.append("category", item?.category);
     formData.append("comment", item?.comment);
+    formData.append("last_update", item?.last_update);
+    formData.append("opening_time", item?.opening_time);
+    formData.append("is_paid", item?.is_paid);
 
     if (item._id) {
       formData.append("_id", item._id);
