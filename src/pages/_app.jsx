@@ -7,9 +7,20 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { store } from "../store";
 import { Provider } from "react-redux";
+import "../styles/global.css";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function App({ Component }) {
+  const { i18n } = useTranslation();
+
   const getLayout = Component.getLayout ?? ((page) => page);
+
+  const lang = globalThis.localStorage?.getItem("i18nextLng");
+
+  useEffect(() => {
+    i18n.changeLanguage(lang);
+  }, [lang]);
 
   return (
     <Provider store={store}>

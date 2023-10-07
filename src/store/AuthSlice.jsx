@@ -16,6 +16,19 @@ export const login = createAsyncThunk(
   }
 );
 
+export const loginPay = createAsyncThunk(
+  "auth/loginPay",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await axios.post("/users/login", data);
+      return response.data;
+    } catch (err) {
+      FireToast("error", err.response.data.message);
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const initialState = {
   user: null,
   loading: false,
@@ -30,6 +43,12 @@ const AuthSlice = createSlice({
       FireToast("success", "Login Success");
       Router.push("/admin");
       localStorage.setItem("token", action.payload.token);
+    });
+    builder.addCase(loginPay.fulfilled, (state, action) => {
+      FireToast("success", "Login Success");
+      Router.push(
+        `http://ewaveonline.com:4040/api/v1/payments/paymentPage?id=${action.payload.data.user._id}&discount=15`
+      );
     });
   },
 });

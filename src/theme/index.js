@@ -6,7 +6,7 @@ export const theme = createTheme({
       xs: 0,
       sm: 600,
       md: 1000,
-      lg: 1200,
+      lg: 1400,
       xl: 1920,
     },
   },
@@ -103,7 +103,7 @@ export const theme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         notchedOutline: {
-          borderColor: "#E6E8F0",
+          borderColor: "#fff",
         },
       },
     },
@@ -159,11 +159,13 @@ export const theme = createTheme({
     primary: {
       main: "#5048E5",
       light: "#828DF8",
-      dark: "#3832A0",
+      dark: "#2F3254",
+      yellow: "#FAB623",
       contrastText: "#FFFFFF",
     },
+
     secondary: {
-      main: "#10B981",
+      main: "#FAB623",
       light: "#3FC79A",
       dark: "#0B815A",
       contrastText: "#FFFFFF",

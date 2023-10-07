@@ -7,13 +7,14 @@ import EditCategory from "../modals/EditCategory";
 import EditVideo from "../modals/EditVideo";
 import EditRecommendation from "../modals/EditRecommendation";
 import EditUser from "../modals/EditUser";
+import Login from "../modals/Login";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 800,
+  width: { xs: 350, sm: 800 },
   bgcolor: "background.paper",
   borderRadius: "20px",
   boxShadow: 24,
@@ -35,6 +36,7 @@ export default function DynamicModal(props) {
     videos: EditVideo,
     recommendations: EditRecommendation,
     users: EditUser,
+    login: Login,
   };
 
   const DynamicComponentName = componentsName[props.model];

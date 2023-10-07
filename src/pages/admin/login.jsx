@@ -24,7 +24,7 @@ const Page = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login({ ...item, fcm_token: "" }));
+    dispatch(login({ ...item, fcm_token: "test123" }));
   };
 
   return (
