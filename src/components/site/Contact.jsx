@@ -59,7 +59,7 @@ const Contact = () => {
   const { t } = useTranslation();
   return (
     <>
-      <Section>
+      <Section className="">
         <Container>
           <Divider
             sx={{
