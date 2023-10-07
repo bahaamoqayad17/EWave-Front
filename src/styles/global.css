@@ -1,0 +1,63 @@
+@font-face {
+  font-family: "Chillax";
+  src: url("/fonts/Chillax-Regular.otf");
+}
+
+@font-face {
+  font-family: "Chillax";
+  src: url("/fonts/Chillax-Bold.otf");
+  font-weight: bold;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Chillax", sans-serif !important;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  background-color: #1f2641;
+}
+
+section {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.MuiDivider-root::after,
+.MuiDivider-root::before {
+  border-top: 3px solid #fab623 !important;
+}
+
+.MuiInput-underline:after,
+.MuiInput-underline:before {
+  border-bottom: 1px solid #fff;
+}
+
+.MuiInput-underline:hover {
+  border-bottom: 1px solid #fff;
+}
+
+.main-header {
+  background-image: url("../../public/header.svg");
+}
+
+footer {
+  border-top: 1px solid #fab623;
+}
+
+.nav-link {
+  font-size: 20px;
+}
