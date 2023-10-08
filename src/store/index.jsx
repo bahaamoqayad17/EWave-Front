@@ -7,6 +7,7 @@ import SettingSlice from "./SettingSlice";
 import UserSlice from "./UserSlice";
 import RecommendationSlice from "./RecommendationSlice";
 import AuthSlice from "./AuthSlice";
+import MessageSlice from "./MessageSlice";
 
 export const store = configureStore({
   reducer: {
@@ -18,5 +19,6 @@ export const store = configureStore({
     users: UserSlice,
     recommendations: RecommendationSlice,
     auth: AuthSlice,
+    messages: MessageSlice,
   },
 });

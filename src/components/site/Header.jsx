@@ -9,6 +9,7 @@ import styled from "@emotion/styled";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import StarOutlineRoundedIcon from "@mui/icons-material/StarOutlineRounded";
 import DynamicModal from "../GlobalComponents/DynamicModal";
+import { useEffect } from "react";
 
 const Image = styled("img")(({ theme }) => ({
   width: "77%",
@@ -27,13 +28,18 @@ const Holder = styled("header")(({ theme }) => ({
   backgroundPosition: "center",
   position: "relative",
   [theme.breakpoints.down("sm")]: {
-    height: "1150px",
+    height: "850px",
   },
 }));
 
 const Header = () => {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
+
+  const lang =
+    typeof window !== undefined
+      ? globalThis?.localStorage?.getItem("i18nextLng")
+      : null;
 
   const handleOpenModel = () => {
     setOpenModal(true);
@@ -50,13 +56,13 @@ const Header = () => {
         <Container sx={{ mt: { sm: 20, xs: 5 } }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
-              <Box mt={{ md: 10, xs: 3 }} position={"relative"}>
+              <Box mt={{ md: 7, xs: 3 }} position={"relative"}>
                 <Thor src="/thor.svg" alt="" />
                 <Box position={"relative"} zIndex={1}>
                   <center>
                     <Typography
                       fontWeight={700}
-                      fontSize={55}
+                      fontSize={{ md: 70, xs: 55 }}
                       component={"span"}
                       color={"primary.yellow"}
                     >
@@ -65,16 +71,23 @@ const Header = () => {
                     &nbsp;&nbsp;
                     <Typography
                       fontWeight={700}
-                      fontSize={55}
+                      fontSize={{ md: 70, xs: 55 }}
                       component={"span"}
                       color={"#fff"}
                     >
                       App
                     </Typography>
-                    <Typography fontSize={35} color={"white"}>
-                      {t("header_text")}
+                    <Typography fontSize={{ md: 35, xs: 20 }} color={"white"}>
+                      {t("header_text_one")}
                     </Typography>
-                    <Typography fontSize={25} mt={1} color={"primary.yellow"}>
+                    <Typography fontSize={{ md: 35, xs: 20 }} color={"white"}>
+                      {t("header_text_two")}
+                    </Typography>
+                    <Typography
+                      fontSize={{ md: 25, xs: 20 }}
+                      mt={1}
+                      color={"primary.yellow"}
+                    >
                       {t("Forex")}/ {t("Crypto")}/ {t("Stock Market")}
                     </Typography>
                     <Button
@@ -92,6 +105,7 @@ const Header = () => {
                       }}
                       onClick={handleOpenModel}
                       variant="contained"
+                      dir={lang === "en" ? "ltr" : "rtl"}
                     >
                       <Typography
                         fontWeight={700}
@@ -139,7 +153,11 @@ const Header = () => {
               </Box>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Box display={"flex"} flexDirection={"row-reverse"}>
+              <Box
+                display={"flex"}
+                flexDirection={"row-reverse"}
+                justifyContent={{ xs: "center", md: "unset" }}
+              >
                 <Image src="/moon.svg" alt="" />
               </Box>
             </Grid>

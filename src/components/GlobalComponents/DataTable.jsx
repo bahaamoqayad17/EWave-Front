@@ -118,9 +118,13 @@ export default function DataTable({
                   </TableCell>
                 ))}
 
-                <TableCell color="textPrimary" variant="body1">
-                  {t("Actions")}
-                </TableCell>
+                {model === "messages" ? (
+                  ""
+                ) : (
+                  <TableCell color="textPrimary" variant="body1">
+                    {t("Actions")}
+                  </TableCell>
+                )}
               </TableRow>
             </TableHead>
             {loading ? (
@@ -160,9 +164,13 @@ export default function DataTable({
                       </TableCell>
                     ))}
 
-                    <TableCell>
-                      <DynamicMenu model={model} item={item} />
-                    </TableCell>
+                    {model === "messages" ? (
+                      ""
+                    ) : (
+                      <TableCell>
+                        <DynamicMenu model={model} item={item} />
+                      </TableCell>
+                    )}
                   </TableRow>
                 ))}
               </TableBody>

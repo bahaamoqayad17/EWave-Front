@@ -11,6 +11,10 @@ import CallIcon from "@mui/icons-material/Call";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { addMessage } from "@/store/MessageSlice";
+import Router from "next/router";
 
 const Card = styled("div")(({ theme }) => ({
   background:
@@ -47,6 +51,7 @@ const Label = styled("p")(({ theme }) => ({
   color: "#fff",
   fontSize: "25px",
   fontWeight: 500,
+  marginBottom: "10px",
 }));
 
 const Section = styled("section")(({ theme }) => ({
@@ -57,9 +62,22 @@ const Section = styled("section")(({ theme }) => ({
 
 const Contact = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  const [item, setItem] = useState({});
+
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setItem({ ...item, [name]: value });
+  };
+
+  const handleSubmit = () => {
+    dispatch(addMessage(item));
+  };
+
   return (
     <>
-      <Section className="">
+      <Section id="contact" className="">
         <Container>
           <Divider
             sx={{
@@ -75,25 +93,73 @@ const Contact = () => {
               <Typography
                 mb={2}
                 fontSize={{ sm: 35, xs: 25 }}
+                display={{ xs: "none", md: "block" }}
                 color={"primary.yellow"}
               >
                 ــــــــــــ {t("contact_us")} ــــــــــــ
               </Typography>
               <Box mb={7}>
                 <Label>{t("full_name")}</Label>
-                <TextField fullWidth variant="standard" />
+                <TextField
+                  onChange={handleChange}
+                  name="name"
+                  value={item?.name}
+                  sx={{
+                    "& input": {
+                      color: "#fff",
+                    },
+                  }}
+                  fullWidth
+                  variant="standard"
+                />
               </Box>
               <Box mb={7}>
                 <Label>{t("email")}</Label>
-                <TextField fullWidth variant="standard" />
+                <TextField
+                  onChange={handleChange}
+                  name="email"
+                  type="email"
+                  value={item?.email}
+                  sx={{
+                    "& input": {
+                      color: "#fff",
+                    },
+                  }}
+                  fullWidth
+                  variant="standard"
+                />
               </Box>
               <Box mb={7}>
                 <Label>{t("phone_number")}</Label>
-                <TextField fullWidth variant="standard" />
+                <TextField
+                  onChange={handleChange}
+                  name="mobile_number"
+                  value={item?.mobile_number}
+                  sx={{
+                    "& input": {
+                      color: "#fff",
+                    },
+                  }}
+                  fullWidth
+                  variant="standard"
+                />
               </Box>
               <Box mb={7}>
                 <Label>{t("message")}</Label>
-                <TextField fullWidth multiline rows={4} variant="outlined" />
+                <TextField
+                  onChange={handleChange}
+                  sx={{
+                    "& textarea": {
+                      color: "#fff",
+                    },
+                  }}
+                  name="message"
+                  value={item?.message}
+                  fullWidth
+                  multiline
+                  rows={4}
+                  variant="outlined"
+                />
               </Box>
 
               <Button
@@ -108,6 +174,7 @@ const Contact = () => {
                   mb: 3,
                 }}
                 fullWidth
+                onClick={handleSubmit}
                 color="secondary"
                 variant="contained"
               >
@@ -126,19 +193,26 @@ const Contact = () => {
               <Box mt={{ xs: 5, sm: 15 }}>
                 <Holder>
                   <CallIcon color="secondary" fontSize="large" />
-                  <Typography>+971 4 4541409</Typography>
+                  <Typography>+96598744459</Typography>
                 </Holder>
-                <Holder>
+                <Holder
+                  onClick={() => Router.push("https://wa.me/+96598744459")}
+                >
                   <WhatsAppIcon color="secondary" fontSize="large" />
-                  <Typography>+966252525252</Typography>
+                  <Typography>+96598744459</Typography>
                 </Holder>
-                <Holder style={{ maxWidth: "345px" }}>
+                <Holder
+                  onClick={() => Router.push("mailto:ewaveapponline@gmail.com")}
+                  style={{ maxWidth: "365px" }}
+                >
                   <EmailIcon color="secondary" fontSize="large" />
-                  <Typography>redstraveldubai@gmail.com</Typography>
+                  <Typography>ewaveapponline@gmail.com</Typography>
                 </Holder>
-                <Holder style={{ maxWidth: "440px" }}>
+                <Holder style={{ maxWidth: "800px" }}>
                   <LocationOnIcon color="secondary" fontSize="large" />
-                  <Typography>Murjan 2, Plaza Level, Jumeirah beach</Typography>
+                  <Typography>
+                    Mirqab,Al Tijaria Tower,Floor 11, Office 40
+                  </Typography>
                 </Holder>
               </Box>
             </Box>

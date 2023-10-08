@@ -22,8 +22,8 @@ import GTranslateIcon from "@mui/icons-material/GTranslate";
 const drawerWidth = 240;
 const navItems = [
   { title: "home", link: "/" },
-  { title: "services", link: "/" },
-  { title: "contact_us", link: "/" },
+  { title: "services", link: "/#services" },
+  { title: "contact_us", link: "/#contact" },
 ];
 
 const Image = styled("img")(({ theme }) => ({
@@ -130,7 +130,7 @@ function NavBar(props) {
           >
             <Image
               onClick={() => Router.push("/")}
-              style={{ cursor: "pointer", width: "13%" }}
+              style={{ cursor: "pointer", width: "17%", height: "100%" }}
               src="/logo.svg"
               alt="test"
             />

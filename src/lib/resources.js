@@ -29,4 +29,8 @@ export const resources = {
     fields: ["name", "image"],
     remove: deleteCategory,
   },
+  messages: {
+    headers: ["name", "email", "Phone", "messsage"],
+    fields: ["name", "email", "mobile_number", "messsage"],
+  },
 };

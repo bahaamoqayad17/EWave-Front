@@ -8,6 +8,8 @@ import EditVideo from "../modals/EditVideo";
 import EditRecommendation from "../modals/EditRecommendation";
 import EditUser from "../modals/EditUser";
 import Login from "../modals/Login";
+import Privacy from "../modals/Privacy";
+import Terms from "../modals/Terms";
 
 const style = {
   position: "absolute",
@@ -37,6 +39,8 @@ export default function DynamicModal(props) {
     recommendations: EditRecommendation,
     users: EditUser,
     login: Login,
+    privacy: Privacy,
+    terms: Terms,
   };
 
   const DynamicComponentName = componentsName[props.model];

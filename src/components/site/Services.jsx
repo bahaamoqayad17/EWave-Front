@@ -58,7 +58,7 @@ const Services = () => {
       <ImageOne src="/left.svg" alt="" />
       <ImageTwo src="/right.svg" alt="" />
 
-      <section>
+      <section id="services">
         <Container>
           <Divider
             sx={{
@@ -85,7 +85,7 @@ const Services = () => {
                       sx={{
                         height: { sm: 600, xs: 320 },
                         padding: "16px",
-                        objectFit: "contain",
+                        objectFit: "cover",
                       }}
                       image={item.image}
                     />
@@ -100,7 +100,9 @@ const Services = () => {
                       color: "#fff",
                     }}
                   >
-                    <Typography>{t(item.content)}</Typography>
+                    <Typography fontWeight={600} fontSize={{ md: 20, xs: 16 }}>
+                      {t(item.content)}
+                    </Typography>
                   </CardContent>
                 </Card>
               </Grid>

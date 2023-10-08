@@ -18,6 +18,7 @@ import RecommendIcon from "@mui/icons-material/Recommend";
 import PaidIcon from "@mui/icons-material/Paid";
 import MoneyOffIcon from "@mui/icons-material/MoneyOff";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import Message from "@mui/icons-material/Message";
 const items = [
   {
     href: "/admin/",
@@ -70,6 +71,11 @@ const items = [
     href: "/admin/notifications",
     icon: <NotificationsActiveIcon fontSize="small" />,
     title: "Push Notifications",
+  },
+  {
+    href: "/admin/messages",
+    icon: <Message fontSize="small" />,
+    title: "Messages",
   },
 ];
 

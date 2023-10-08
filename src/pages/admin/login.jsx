@@ -84,7 +84,7 @@ const Page = () => {
                     sx={{ my: 2 }}
                   >
                     <p style={{ margin: 0 }}>{t("welcome")}</p>
-                    <LangMenu />
+                    {/* <LangMenu /> */}
                   </Box>
                 </Typography>
                 <Typography

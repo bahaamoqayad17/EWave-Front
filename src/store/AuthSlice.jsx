@@ -7,7 +7,7 @@ export const login = createAsyncThunk(
   "auth/login",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await axios.post("/users/login", data);
+      const response = await axios.post("users/login", data);
       return response.data;
     } catch (err) {
       FireToast("error", err.response.data.message);
@@ -20,7 +20,20 @@ export const loginPay = createAsyncThunk(
   "auth/loginPay",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await axios.post("/users/login", data);
+      const response = await axios.post("users/login", data);
+      return response.data;
+    } catch (err) {
+      FireToast("error", err.response.data.message);
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const register = createAsyncThunk(
+  "auth/register",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await axios.post("users/register", data);
       return response.data;
     } catch (err) {
       FireToast("error", err.response.data.message);
@@ -46,6 +59,12 @@ const AuthSlice = createSlice({
     });
     builder.addCase(loginPay.fulfilled, (state, action) => {
       FireToast("success", "Login Success");
+      Router.push(
+        `http://ewaveonline.com:4040/api/v1/payments/paymentPage?id=${action.payload.data.user._id}&discount=15`
+      );
+    });
+    builder.addCase(register.fulfilled, (state, action) => {
+      FireToast("success", "Register Success");
       Router.push(
         `http://ewaveonline.com:4040/api/v1/payments/paymentPage?id=${action.payload.data.user._id}&discount=15`
       );
