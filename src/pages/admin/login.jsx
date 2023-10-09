@@ -37,6 +37,7 @@ const Page = () => {
         sx={{
           display: "flex",
           flex: "1 1 auto",
+          backgroundColor: "#f5f5f5",
         }}
       >
         <Grid container sx={{ flex: "1 1 auto" }}>

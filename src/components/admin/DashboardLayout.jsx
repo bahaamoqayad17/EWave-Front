@@ -29,6 +29,7 @@ export default function DashboardLayout(props) {
               flex: "1 1 auto",
               flexDirection: "column",
               width: "100%",
+              backgroundColor: "#f5f5f5",
             }}
           >
             {children}
