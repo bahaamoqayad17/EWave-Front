@@ -1,14 +1,14 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginPay, register } from "@/store/AuthSlice";
 import { useTranslation } from "react-i18next";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const style = {
   marginBottom: "20px",
@@ -19,6 +19,7 @@ const Login = (props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [isNew, setIsNew] = useState(true);
+  const { loading } = useSelector((state) => state.auth);
 
   const handleChange = (e) => {
     setItem({ ...item, [e.target.name]: e.target.value });
@@ -107,7 +108,7 @@ const Login = (props) => {
       )}
 
       <Button variant="contained" onClick={handleSubmit}>
-        Save
+        {loading ? <CircularProgress /> : t("save")}
       </Button>
     </>
   );

@@ -46,5 +46,6 @@ export const en = {
     four: "4- Fees may not be refunded after the start of the service, and the subscription is valid for the entire period once the actual service starts",
     five: "5- All rights to the analyzes and reports submitted are reserved, and any copying of them on social networking sites or the like without notification and approval of the administration may be subject to a ban and his membership may be canceled after warning him via email",
     six: "6- The administration has the right to review and amend the terms of use, and such amendments will be communicated via email. Please ensure that the data is correct when registering and subscribing",
+    save: "Save",
   },
 };
