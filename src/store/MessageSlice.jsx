@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "@/lib/axios";
 import { FireToast } from "@/lib/fireToast";
-import Router from "next/router";
 
 export const fetchMessages = createAsyncThunk(
-  "auth/login",
-  async (data, { rejectWithValue }) => {
+  "messages/fetchMessages",
+  async (data, { rejectWithValue, dispatch }) => {
+    dispatch(startLoading());
     try {
-      const response = await axios.get("/messages", { data });
+      const response = await axios.get("messages", { data });
       return response.data;
     } catch (err) {
       FireToast("error", err.response.data.message);
@@ -17,10 +17,11 @@ export const fetchMessages = createAsyncThunk(
 );
 
 export const addMessage = createAsyncThunk(
-  "auth/loginPay",
-  async (data, { rejectWithValue }) => {
+  "messages/addMessage",
+  async (data, { rejectWithValue, dispatch }) => {
+    dispatch(startLoading());
     try {
-      const response = await axios.post("/messages", data);
+      const response = await axios.post("messages", data);
       return response.data;
     } catch (err) {
       FireToast("error", err.response.data.message);
@@ -38,15 +39,23 @@ const initialState = {
 const MessageSlice = createSlice({
   name: "messages",
   initialState,
+  reducers: {
+    startLoading: (state) => {
+      state.loading = true;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchMessages.fulfilled, (state, action) => {
       state.messages = action.payload.data;
       state.count = action.payload.count;
+      state.loading = false;
     });
     builder.addCase(addMessage.fulfilled, (state, action) => {
       FireToast("success", "Message Sent Successfully");
+      state.loading = false;
     });
   },
 });
 
+export const { startLoading } = MessageSlice.actions;
 export default MessageSlice.reducer;

@@ -21,22 +21,22 @@ export default function DashboardLayout(props) {
 
   return (
     <>
-      {/* <AuthGuard> */}
-      <DashboardLayoutRoot>
-        <Box
-          sx={{
-            display: "flex",
-            flex: "1 1 auto",
-            flexDirection: "column",
-            width: "100%",
-          }}
-        >
-          {children}
-        </Box>
-      </DashboardLayoutRoot>
-      <NavBar onSidebarOpen={() => setSidebarOpen(true)} />
-      <Sidebar onClose={() => setSidebarOpen(false)} open={isSidebarOpen} />
-      {/* </AuthGuard> */}
+      <AuthGuard>
+        <DashboardLayoutRoot>
+          <Box
+            sx={{
+              display: "flex",
+              flex: "1 1 auto",
+              flexDirection: "column",
+              width: "100%",
+            }}
+          >
+            {children}
+          </Box>
+        </DashboardLayoutRoot>
+        <NavBar onSidebarOpen={() => setSidebarOpen(true)} />
+        <Sidebar onClose={() => setSidebarOpen(false)} open={isSidebarOpen} />
+      </AuthGuard>
     </>
   );
 }

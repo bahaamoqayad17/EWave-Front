@@ -11,10 +11,11 @@ import CallIcon from "@mui/icons-material/Call";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { addMessage } from "@/store/MessageSlice";
 import Router from "next/router";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Card = styled("div")(({ theme }) => ({
   background:
@@ -45,6 +46,7 @@ const Holder = styled("div")(({ theme }) => ({
     width: "50px",
     height: "50px",
   },
+  cursor: "pointer",
 }));
 
 const Label = styled("p")(({ theme }) => ({
@@ -63,6 +65,7 @@ const Section = styled("section")(({ theme }) => ({
 const Contact = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.messages);
 
   const [item, setItem] = useState({});
 
@@ -178,7 +181,7 @@ const Contact = () => {
                 color="secondary"
                 variant="contained"
               >
-                {t("send")}
+                {loading ? <CircularProgress /> : t("send")}
               </Button>
             </Box>
             <Box>
@@ -208,7 +211,7 @@ const Contact = () => {
                   <EmailIcon color="secondary" fontSize="large" />
                   <Typography>ewaveapponline@gmail.com</Typography>
                 </Holder>
-                <Holder style={{ maxWidth: "800px" }}>
+                <Holder style={{ maxWidth: "470px" }}>
                   <LocationOnIcon color="secondary" fontSize="large" />
                   <Typography>
                     Mirqab,Al Tijaria Tower,Floor 11, Office 40

@@ -18,7 +18,9 @@ export const login = createAsyncThunk(
 
 export const loginPay = createAsyncThunk(
   "auth/loginPay",
-  async (data, { rejectWithValue }) => {
+  async (data, { rejectWithValue, dispatch }) => {
+    dispatch(startLoading());
+
     try {
       const response = await axios.post("users/login", data);
       return response.data;
@@ -31,7 +33,8 @@ export const loginPay = createAsyncThunk(
 
 export const register = createAsyncThunk(
   "auth/register",
-  async (data, { rejectWithValue }) => {
+  async (data, { rejectWithValue, dispatch }) => {
+    dispatch(startLoading());
     try {
       const response = await axios.post("users/register", data);
       return response.data;
@@ -51,6 +54,11 @@ const initialState = {
 const AuthSlice = createSlice({
   name: "auth",
   initialState,
+  reducers: {
+    startLoading: (state) => {
+      state.loading = true;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
       FireToast("success", "Login Success");
@@ -62,14 +70,17 @@ const AuthSlice = createSlice({
       Router.push(
         `http://ewaveonline.com:4040/api/v1/payments/paymentPage?id=${action.payload.data.user._id}&discount=15`
       );
+      state.loading = false;
     });
     builder.addCase(register.fulfilled, (state, action) => {
       FireToast("success", "Register Success");
       Router.push(
         `http://ewaveonline.com:4040/api/v1/payments/paymentPage?id=${action.payload.data.user._id}&discount=15`
       );
+      state.loading = false;
     });
   },
 });
 
+export const { startLoading } = AuthSlice.actions;
 export default AuthSlice.reducer;

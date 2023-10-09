@@ -54,15 +54,6 @@ const Login = (props) => {
       {isNew ? (
         <>
           <TextField
-            label={t("name")}
-            name="name"
-            fullWidth
-            value={item?.email}
-            type="email"
-            onChange={handleChange}
-            style={style}
-          />
-          <TextField
             label={t("email")}
             name="email"
             fullWidth

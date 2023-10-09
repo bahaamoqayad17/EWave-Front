@@ -18,8 +18,11 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: { xs: 350, sm: 800 },
   bgcolor: "background.paper",
-  borderRadius: "20px",
+  borderRadius: "10px",
   boxShadow: 24,
+  overflowY: "scroll",
+  maxHeight: { xs: "50%", md: "unset" },
+
   p: 4,
 };
 
