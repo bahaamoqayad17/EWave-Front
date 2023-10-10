@@ -30,6 +30,21 @@ export const addMessage = createAsyncThunk(
   }
 );
 
+export const deleteMessage = createAsyncThunk(
+  "messages/deleteMessage",
+  async (item, { rejectWithValue, dispatch }) => {
+    dispatch(startLoading());
+    try {
+      const response = await axios.delete(`messages/${item._id}`);
+      dispatch(fetchMessages());
+      return response.data;
+    } catch (err) {
+      FireToast("error", err.response.data.message);
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const initialState = {
   messages: [],
   loading: false,
@@ -52,6 +67,10 @@ const MessageSlice = createSlice({
     });
     builder.addCase(addMessage.fulfilled, (state, action) => {
       FireToast("success", "Message Sent Successfully");
+      state.loading = false;
+    });
+    builder.addCase(deleteMessage.fulfilled, (state, action) => {
+      FireToast("warning", "Message Deleted Successfully");
       state.loading = false;
     });
   },

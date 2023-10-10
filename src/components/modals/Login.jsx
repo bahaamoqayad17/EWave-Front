@@ -9,6 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginPay, register } from "@/store/AuthSlice";
 import { useTranslation } from "react-i18next";
 import CircularProgress from "@mui/material/CircularProgress";
+import Checkbox from "@mui/material/Checkbox";
+import Box from "@mui/material/Box";
+import { FireToast } from "@/lib/fireToast";
 
 const style = {
   marginBottom: "20px",
@@ -19,6 +22,7 @@ const Login = (props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [isNew, setIsNew] = useState(true);
+  const [checked, setChecked] = useState(false);
   const { loading } = useSelector((state) => state.auth);
 
   const handleChange = (e) => {
@@ -27,6 +31,10 @@ const Login = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!checked) {
+      FireToast("error", t("accept_terms"));
+      return;
+    }
     if (isNew) {
       dispatch(register(item));
     } else {
@@ -35,7 +43,14 @@ const Login = (props) => {
   };
   return (
     <>
-      <FormControl sx={{ mb: 3 }}>
+      <h1>{t("sub_benefits")}</h1>
+      <p>1- {t("sub_benefits1")}</p>
+      <p>2- {t("sub_benefits2")}</p>
+      <p>3- {t("sub_benefits3")}</p>
+      <p>4- {t("sub_benefits4")}</p>
+      <p>5- {t("sub_benefits5")}</p>
+      <p>6- {t("sub_benefits6")}</p>
+      <FormControl sx={{ my: 3 }}>
         <RadioGroup row value={isNew} onChange={() => setIsNew(!isNew)}>
           <FormControlLabel
             value={true}
@@ -50,7 +65,7 @@ const Login = (props) => {
         </RadioGroup>
       </FormControl>
 
-      <h1 style={style}>{isNew ? t("register") : t("login")}</h1>
+      <h2 style={style}>{isNew ? t("register") : t("login")}</h2>
 
       {isNew ? (
         <>
@@ -106,6 +121,17 @@ const Login = (props) => {
           />
         </>
       )}
+
+      <Box>
+        <FormControl sx={{ mb: 3 }}>
+          <FormControlLabel
+            value={checked}
+            control={<Checkbox />}
+            onChange={() => setChecked(!checked)}
+            label={t("accept_privacy_policy")}
+          />
+        </FormControl>
+      </Box>
 
       <Button variant="contained" onClick={handleSubmit}>
         {loading ? <CircularProgress /> : t("save")}

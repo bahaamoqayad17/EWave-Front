@@ -62,18 +62,15 @@ export default function DynamicMenu({ item, model }) {
           horizontal: "right",
         }}
       >
-        <MenuItem onClick={handleOpenMenu}>
-          <EditPenIcon fontSize="small" />
-          &nbsp; {t("Edit")}
-        </MenuItem>
-        {/* <MenuItem>
-          <Link href={{ pathname: `/${model}/${item._id}` }}>
-            <p style={{ color: "#000", textDecoration: "none" }}>
-              <ShowIcon fontSize="small" />
-              &nbsp; Show
-            </p>
-          </Link>
-        </MenuItem> */}
+        {model === "messages" ? (
+          ""
+        ) : (
+          <MenuItem onClick={handleOpenMenu}>
+            <EditPenIcon fontSize="small" />
+            &nbsp; {t("Edit")}
+          </MenuItem>
+        )}
+
         {model === "users" ? (
           ""
         ) : (

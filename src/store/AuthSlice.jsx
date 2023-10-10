@@ -79,6 +79,12 @@ const AuthSlice = createSlice({
       );
       state.loading = false;
     });
+    builder.addCase(loginPay.rejected, (state, action) => {
+      state.loading = false;
+    });
+    builder.addCase(register.rejected, (state, action) => {
+      state.loading = false;
+    });
   },
 });
 

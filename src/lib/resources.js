@@ -1,5 +1,6 @@
 import { deleteArticle } from "@/store/ArticleSlice";
 import { deleteCategory } from "@/store/CategorySlice";
+import { deleteMessage } from "@/store/MessageSlice";
 import { deleteRecommendation } from "@/store/RecommendationSlice";
 import { deleteVideo } from "@/store/VideoSlice";
 
@@ -30,7 +31,8 @@ export const resources = {
     remove: deleteCategory,
   },
   messages: {
-    headers: ["name", "email", "Phone", "messsage"],
-    fields: ["name", "email", "mobile_number", "messsage"],
+    headers: ["name", "email", "Phone", "message"],
+    fields: ["name", "email", "mobile_number", "message"],
+    remove: deleteMessage,
   },
 };

@@ -44,23 +44,6 @@ function NavBar(props) {
     setMobileOpen((prevState) => !prevState);
   };
 
-  const handleDownload = () => {
-    if (isApple) {
-      Router.push("https://apps.apple.com/us/app/ewave-app/id6466179046");
-    } else {
-      Router.push(
-        "https://play.google.com/store/apps/details?id=com.ewave.ewave"
-      );
-    }
-  };
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const userAgent = window.navigator.userAgent.toLowerCase();
-      setIsApple(/(ipad|iphone|ipod)/g.test(userAgent));
-    }
-  }, []);
-
   const drawer = (
     <>
       <Box onClick={handleDrawerToggle} sx={{ p: 2 }}>
@@ -88,7 +71,7 @@ function NavBar(props) {
 
         <Box display={"flex"} justifyContent={"space-between"}>
           <Button
-            onClick={handleDownload}
+            onClick={props.handleDownload}
             sx={{ backgroundColor: "#FAB623", color: "#fff" }}
             variant="contained"
           >
@@ -193,7 +176,7 @@ function NavBar(props) {
                       backgroundColor: "#FAB623",
                     },
                   }}
-                  onClick={handleDownload}
+                  onClick={props.handleDownload}
                   variant="contained"
                 >
                   {t("download_free")}

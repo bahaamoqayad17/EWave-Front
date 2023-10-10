@@ -21,11 +21,11 @@ const items = [
     content: "service_two",
   },
   {
-    image: "/service3.svg",
+    image: "/service4.svg",
     content: "service_three",
   },
   {
-    image: "/service4.svg",
+    image: "/service3.svg",
     content: "service_four",
   },
 ];
@@ -83,7 +83,7 @@ const Services = () => {
                   <Box sx={{ padding: "16px", backgroundColor: "#353F5B" }}>
                     <CardMedia
                       sx={{
-                        height: { sm: 600, xs: 320 },
+                        height: { sm: 500, xs: 320 },
                         padding: "16px",
                         objectFit: "cover",
                       }}

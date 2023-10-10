@@ -47,5 +47,16 @@ export const en = {
     five: "5- All rights to the analyzes and reports submitted are reserved, and any copying of them on social networking sites or the like without notification and approval of the administration may be subject to a ban and his membership may be canceled after warning him via email",
     six: "6- The administration has the right to review and amend the terms of use, and such amendments will be communicated via email. Please ensure that the data is correct when registering and subscribing",
     save: "Save",
+    sub_benefits: "Subscription benefits for members Include:",
+    accept_terms: "Please accept the terms of use and privacy policy",
+    accept_privacy_policy: "Accept Privacy Policy",
+    sub_benefits1: "24hour follow-up of the Forex and Crypto currencies market",
+    sub_benefits2: "Monitoring the most important opportunities in US stocks",
+    sub_benefits3: "Workshops to follow up on everything new in the markets",
+    sub_benefits4:
+      "Special follow-up of the Saudi stock market and Arab stocks",
+    sub_benefits5:
+      "educational library where we share with you the best strategies",
+    sub_benefits6: "20% discount on the monthly subscription",
   },
 };

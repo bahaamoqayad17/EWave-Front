@@ -114,17 +114,12 @@ export default function DataTable({
 
                 {resources[model]?.headers?.map((header) => (
                   <TableCell key={header} color="textPrimary" variant="body1">
-                    {t(header)}
+                    {header}
                   </TableCell>
                 ))}
-
-                {model === "messages" ? (
-                  ""
-                ) : (
-                  <TableCell color="textPrimary" variant="body1">
-                    {t("Actions")}
-                  </TableCell>
-                )}
+                <TableCell color="textPrimary" variant="body1">
+                  {t("Actions")}
+                </TableCell>
               </TableRow>
             </TableHead>
             {loading ? (
@@ -163,14 +158,9 @@ export default function DataTable({
                         {getFieldValue(item, field)}
                       </TableCell>
                     ))}
-
-                    {model === "messages" ? (
-                      ""
-                    ) : (
-                      <TableCell>
-                        <DynamicMenu model={model} item={item} />
-                      </TableCell>
-                    )}
+                    <TableCell>
+                      <DynamicMenu model={model} item={item} />
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

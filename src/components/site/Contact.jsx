@@ -199,7 +199,9 @@ const Contact = () => {
                   <Typography>+96598744459</Typography>
                 </Holder>
                 <Holder
-                  onClick={() => Router.push("https://wa.me/+96598744459")}
+                  onClick={() =>
+                    window.open("https://wa.me/+96598744459", "_blank")
+                  }
                 >
                   <WhatsAppIcon color="secondary" fontSize="large" />
                   <Typography>+96598744459</Typography>

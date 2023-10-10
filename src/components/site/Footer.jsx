@@ -29,8 +29,8 @@ const Holder = styled("div")(({ theme }) => ({
 
 const Text = styled("p")(({ theme }) => ({
   color: "#fff",
-  fontSize: "32px",
-  fontWeight: 700,
+  fontSize: "25px",
+  fontWeight: 600,
   textDecoration: "underline",
   textDecorationColor: "#fab623",
   textDecorationThickness: "1px",
@@ -79,7 +79,11 @@ const Footer = () => {
             flexDirection={{ xs: "column", sm: "row" }}
           >
             <Box>
-              <Holder onClick={() => Router.push("https://wa.me/+96598744459")}>
+              <Holder
+                onClick={() =>
+                  window.open("https://wa.me/+96598744459", "_blank")
+                }
+              >
                 <WhatsAppIcon color="secondary" fontSize="large" />
                 <Typography>+96598744459</Typography>
               </Holder>
@@ -97,22 +101,26 @@ const Footer = () => {
               >
                 <Image
                   onClick={() =>
-                    Router.push(
-                      "https://www.facebook.com/profile.php?id=61552235002283&mibextid=LQQJ4d"
+                    window.open(
+                      "https://www.facebook.com/profile.php?id=61552235002283&mibextid=LQQJ4d",
+                      "_blank"
                     )
                   }
                   src="/facebook.svg"
                   alt=""
                 />
                 <Image
-                  onClick={() => Router.push("https://twitter.com/ewavechart")}
+                  onClick={() =>
+                    window.open("https://twitter.com/ewavechart", "_blank")
+                  }
                   src="/twitter.svg"
                   alt=""
                 />
                 <Image
                   onClick={() =>
-                    Router.push(
-                      "https://instagram.com/ewaveapp?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr"
+                    window.open(
+                      "https://instagram.com/ewaveapp?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr",
+                      "_blank"
                     )
                   }
                   src="/instagram.svg"
