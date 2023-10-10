@@ -77,13 +77,13 @@ function NavBar(props) {
           >
             {t("download_free")}
           </Button>
-          <GTranslateIcon
-            sx={{ cursor: "pointer" }}
-            color="secondary"
-            fontSize="large"
-            onClick={props.changeLang}
-          />
         </Box>
+        <GTranslateIcon
+          sx={{ cursor: "pointer" }}
+          color="secondary"
+          fontSize="large"
+          onClick={props.changeLang}
+        />
       </Box>
     </>
   );
