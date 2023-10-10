@@ -57,6 +57,6 @@ export const en = {
       "Special follow-up of the Saudi stock market and Arab stocks",
     sub_benefits5:
       "educational library where we share with you the best strategies",
-    sub_benefits6: "20% discount on the monthly subscription",
+    sub_benefits6: "15% discount on the monthly subscription",
   },
 };

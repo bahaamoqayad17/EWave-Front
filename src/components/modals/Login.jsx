@@ -43,7 +43,7 @@ const Login = (props) => {
   };
   return (
     <>
-      <h1>{t("sub_benefits")}</h1>
+      <h2>{t("sub_benefits")}</h2>
       <p>1- {t("sub_benefits1")}</p>
       <p>2- {t("sub_benefits2")}</p>
       <p>3- {t("sub_benefits3")}</p>
@@ -65,7 +65,7 @@ const Login = (props) => {
         </RadioGroup>
       </FormControl>
 
-      <h2 style={style}>{isNew ? t("register") : t("login")}</h2>
+      <h3 style={style}>{isNew ? t("register") : t("login")}</h3>
 
       {isNew ? (
         <>

@@ -21,7 +21,7 @@ const style = {
   borderRadius: "10px",
   boxShadow: 24,
   overflowY: "scroll",
-  maxHeight: { xs: "50%", md: "unset" },
+  maxHeight: { xs: "65%", md: "unset" },
 
   p: 4,
 };
