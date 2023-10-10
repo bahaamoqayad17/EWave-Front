@@ -69,9 +69,10 @@ function NavBar(props) {
           ))}
         </List>
 
-        <Box display={"flex"} justifyContent={"space-between"}>
+        <Box>
           <Button
             onClick={props.handleDownload}
+            fullWidth
             sx={{ backgroundColor: "#FAB623", color: "#fff" }}
             variant="contained"
           >
