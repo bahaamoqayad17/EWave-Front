@@ -2,6 +2,7 @@ import { deleteArticle } from "@/store/ArticleSlice";
 import { deleteCategory } from "@/store/CategorySlice";
 import { deleteMessage } from "@/store/MessageSlice";
 import { deleteRecommendation } from "@/store/RecommendationSlice";
+import { deleteUser } from "@/store/UserSlice";
 import { deleteVideo } from "@/store/VideoSlice";
 
 export const resources = {
@@ -19,6 +20,7 @@ export const resources = {
   users: {
     headers: ["email", "phone", "Is Paid"],
     fields: ["email", "mobile_number", "is_paid"],
+    remove: deleteUser,
   },
   videos: {
     headers: ["link", "image", "title"],

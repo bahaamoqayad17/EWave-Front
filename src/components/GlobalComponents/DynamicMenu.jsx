@@ -71,18 +71,14 @@ export default function DynamicMenu({ item, model }) {
           </MenuItem>
         )}
 
-        {model === "users" ? (
-          ""
-        ) : (
-          <MenuItem>
-            <ConfirmDialog
-              model={model}
-              item={item}
-              setOpen={setOpenMenu}
-              open={openMenu}
-            />
-          </MenuItem>
-        )}
+        <MenuItem>
+          <ConfirmDialog
+            model={model}
+            item={item}
+            setOpen={setOpenMenu}
+            open={openMenu}
+          />
+        </MenuItem>
       </Menu>
     </>
   );

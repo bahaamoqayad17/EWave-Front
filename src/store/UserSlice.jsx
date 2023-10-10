@@ -29,6 +29,19 @@ export const updateUser = createAsyncThunk(
   }
 );
 
+export const deleteUser = createAsyncThunk(
+  "users/deleteUser",
+  async (item, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await axios.delete(`/users/${item._id}`, item);
+      dispatch(fetchUsers());
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const initialState = {
   users: [],
   loading: false,
@@ -52,6 +65,9 @@ const UserSlice = createSlice({
     });
     builder.addCase(updateUser.fulfilled, (state, action) => {
       FireToast("success", "User updated successfully");
+    });
+    builder.addCase(deleteUser.fulfilled, (state, action) => {
+      FireToast("warning", "User Deleted successfully");
     });
   },
 });
